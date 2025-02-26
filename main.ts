@@ -69,10 +69,10 @@ async function updatePage() {
     block_id: notionPageId, // The parent block ID where the Slack message is inserted
   });
 
-  // Check if any of the blocks already contains the Slack message text
-  for (const block of response.results) {
+  const blocks = response.results;
+  for (let i = 0; i < blocks.length; i++) {
+    const block = blocks[i];
     if (!("type" in block)) continue;
-    let updated = false;
     if (block.type === "paragraph") {
       const items: any[] = [];
       for (const element of block.paragraph.rich_text) {
@@ -102,6 +102,12 @@ async function updatePage() {
         }
 
         console.log(slackMessage);
+
+        // Check if next block is already a quote
+        const nextBlock = blocks[i + 1];
+        if (nextBlock && "type" in nextBlock && nextBlock.type === "quote") {
+          continue;
+        }
 
         await notion.blocks.children.append({
           block_id: notionPageId,
