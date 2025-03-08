@@ -16,7 +16,7 @@ A: It requires godlike permissions (acting as you on slack). So this is a way of
 
 2. Edit `.secrets.json` and add appropriate tokens
 
-3. `npx ts-node main.ts <notion document link>`
+3. `npm start <notion document link>`
 
 WARNING: edits made by this script don't seem to be registered properly in
 Notion change history, and can't be undone. Back up your documents.

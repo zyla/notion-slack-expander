@@ -1,4 +1,7 @@
 {
+  "scripts": {
+    "start": "ts-node main.ts"
+  },
   "devDependencies": {
     "@notionhq/client": "^2.2.15",
     "@slack/web-api": "^7.8.0",
